@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Npgsql;
 
 namespace cervantes_challange
 {
@@ -12,6 +13,8 @@ namespace cervantes_challange
         /// Ponto de entrada principal para o aplicativo.
         /// </summary>
         [STAThread]
+
+  
         static void Main()
         {
             Application.EnableVisualStyles();
