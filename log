@@ -1,0 +1,22 @@
+public,estudantes,postgres,2020-02-10 14:10:10.377497-03,I,,"(6,Frida,24)","CREATE TRIGGER t_if_modified_trg 
+AFTER INSERT OR UPDATE OR DELETE ON estudantes
+FOR EACH ROW EXECUTE PROCEDURE if_modified_func();
+
+SELECT * FROM logged_actions;
+ 
+INSERT INTO estudantes (nome, id_number) VALUES (''Frida'', 24);
+ 
+SELECT * FROM logged_actions;
+ 
+ SHOW timezone;
+ SET timezone = ''UTC'';
+ SELECT * FROM logged_actions;
+ RESET timezone;
+ SELECT *, action_tstamp AT TIME ZONE ''UTC'' AS action_tstamp_utc FROM logged_actions;
+"
+public,estudantes,postgres,2020-02-10 14:10:38.763649-03,I,,"(7,Juno,35)","
+INSERT INTO estudantes (nome, id_number) VALUES (''Juno'', 35);
+ "
+public,estudantes,postgres,2020-02-10 14:14:32.125064-03,I,,"(8,Teste,0)","
+INSERT INTO estudantes (nome, id_number) VALUES (''Teste'', 0);
+ "
