@@ -1,8 +1,27 @@
-1,teesseettee,
-2,Tiago,
-3,"",
-4,LUL,
-5,Tiago,
-6,Frida,
-7,Juno,
-8,Teste,
+-- Table: public.estudantes
+
+-- DROP TABLE public.estudantes;
+
+CREATE TABLE public.estudantes
+(
+    id integer NOT NULL DEFAULT nextval('estudantes_id_seq'::regclass),
+    nome character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    id_number integer,
+    CONSTRAINT estudantes_pkey PRIMARY KEY (id),
+    CONSTRAINT estudantes_id_number_key UNIQUE (id_number)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.estudantes
+    OWNER to postgres;
+
+-- Trigger: t_if_modified_trg
+
+-- DROP TRIGGER t_if_modified_trg ON public.estudantes;
+
+CREATE TRIGGER t_if_modified_trg
+    AFTER INSERT OR DELETE OR UPDATE 
+    ON public.estudantes
+    FOR EACH ROW
+    EXECUTE PROCEDURE public.if_modified_func();
